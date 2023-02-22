@@ -68,6 +68,20 @@ public class InMemoryPersistenceTest {
                 
         
     }
+    @Test
+    public void foundBluePrintsByAuthor() throws BlueprintPersistenceException, BlueprintNotFoundException {
+        InMemoryBlueprintPersistence ibpp = new InMemoryBlueprintPersistence();
+        Point[] pFirst = new Point[] { new Point(40, 40), new Point(15, 15) };
+        Blueprint bFirst = new Blueprint("David", "Pintura1", pFirst);
+        ibpp.saveBlueprint(bFirst);
+        Point[] pSecond = new Point[] { new Point(41, 41), new Point(16, 16) };
+        Blueprint bSecond = new Blueprint("David", "Pintura2", pSecond);
+        ibpp.saveBlueprint(bSecond);
+        Point[] pThird = new Point[] { new Point(42, 42), new Point(17, 17) };
+        Blueprint bThird = new Blueprint("David", "Pintura3", pThird);
+        ibpp.saveBlueprint(bThird);
+        assertEquals(3, ibpp.getBlueprintsByAuthor("David").size());
+    }
 
 
     
